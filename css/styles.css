@@ -2,14 +2,14 @@
    МЕРИДИАН — премиальный лендинг строительной компании
    ============================================================ */
 :root {
-  --bg: #0b0c0e;
-  --bg-2: #121417;
-  --surface: #171a1e;
-  --text: #f2f3f4;
-  --muted: #9aa0a8;
+  --bg: #ffffff;
+  --bg-2: #f5f6f7;
+  --surface: #ffffff;
+  --text: #17191c;
+  --muted: #6b7177;
   --accent: #c8a15a;
   --accent-2: #e0c08a;
-  --line: rgba(255, 255, 255, .08);
+  --line: rgba(23, 25, 28, .1);
   --radius: 20px;
   --font-head: 'Unbounded', sans-serif;
   --font-body: 'Manrope', sans-serif;
@@ -119,7 +119,7 @@ a {
 
 .btn--solid {
   background: var(--accent);
-  color: #111;
+  color: #fff;
 }
 
 .btn--solid:hover {
@@ -128,8 +128,8 @@ a {
 }
 
 .btn--ghost {
-  color: var(--text);
-  border-color: rgba(255, 255, 255, .25);
+  color: #fff;
+  border-color: rgba(255, 255, 255, .3);
 }
 
 .btn--ghost:hover {
@@ -139,7 +139,7 @@ a {
 
 .btn--outline {
   color: var(--text);
-  border-color: rgba(255, 255, 255, .25);
+  border-color: rgba(23, 25, 28, .25);
   padding: 11px 24px;
   font-size: 13px;
 }
@@ -214,10 +214,54 @@ a {
 }
 
 .header.scrolled {
-  background: rgba(11, 12, 14, .85);
+  background: rgba(255, 255, 255, .88);
   backdrop-filter: blur(14px);
   padding: 13px 0;
   box-shadow: 0 1px 0 var(--line);
+}
+
+/* Пока шапка поверх тёмного героя — текст светлый */
+.header:not(.scrolled) {
+  color: #fff;
+}
+
+.header:not(.scrolled) .nav a {
+  color: rgba(255, 255, 255, .72);
+}
+
+.header:not(.scrolled) .nav a:hover {
+  color: #fff;
+}
+
+.header:not(.scrolled) .logo {
+  color: #fff;
+}
+
+.header:not(.scrolled) .btn--outline {
+  color: #fff;
+  border-color: rgba(255, 255, 255, .35);
+}
+
+.header:not(.scrolled) .btn--outline:hover {
+  border-color: var(--accent);
+  color: var(--accent-2);
+}
+
+.header:not(.scrolled) .burger span {
+  background: #fff;
+}
+
+/* При открытом белом меню — тёмные логотип и бургер */
+.header:has(.nav.open):not(.scrolled) {
+  color: var(--text);
+}
+
+.header:has(.nav.open):not(.scrolled) .logo {
+  color: var(--text);
+}
+
+.nav.open~.burger span {
+  background: var(--text);
 }
 
 .header__inner {
@@ -325,7 +369,7 @@ a {
   letter-spacing: .3em;
   text-transform: uppercase;
   color: var(--accent);
-  border: 1px solid rgba(200, 161, 90, .4);
+  border: 1px solid rgba(200, 161, 90, .45);
   border-radius: 100px;
   padding: 10px 22px;
   margin-bottom: 34px;
@@ -337,6 +381,7 @@ a {
   font-size: clamp(38px, 6vw, 82px);
   line-height: 1.08;
   letter-spacing: .01em;
+  color: #fff;
 }
 
 .hero__title em {
@@ -346,7 +391,7 @@ a {
 
 .hero__text {
   max-width: 560px;
-  color: var(--muted);
+  color: rgba(255, 255, 255, .78);
   margin: 30px 0 40px;
   font-size: 17px;
 }
@@ -369,11 +414,12 @@ a {
   font-family: var(--font-head);
   font-size: 30px;
   font-weight: 400;
+  color: #fff;
 }
 
 .hero__stat span {
   font-size: 13px;
-  color: var(--muted);
+  color: rgba(255, 255, 255, .6);
   letter-spacing: .08em;
   text-transform: uppercase;
 }
@@ -386,7 +432,7 @@ a {
   font-size: 11px;
   letter-spacing: .3em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: rgba(255, 255, 255, .6);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -496,7 +542,78 @@ a {
   padding: 12px 22px;
   border-radius: 100px;
   font-size: 13px;
+  color: rgba(255, 255, 255, .75);
+}
+
+/* ---------- Акции ---------- */
+.promo {
+  background: var(--bg-2);
+}
+
+.promo__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.promo-card {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all .35s ease;
+}
+
+.promo-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 48px rgba(23, 25, 28, .1);
+  border-color: rgba(200, 161, 90, .5);
+}
+
+.promo-card__badge {
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  z-index: 2;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 100px;
+  padding: 7px 16px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.promo-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform .6s ease;
+}
+
+.promo-card:hover img {
+  transform: scale(1.05);
+}
+
+.promo-card__body {
+  padding: 24px 26px 28px;
+  display: grid;
+  gap: 8px;
+}
+
+.promo-card__body b {
+  font-family: var(--font-head);
+  font-weight: 400;
+  font-size: 19px;
+}
+
+.promo-card__body span {
   color: var(--muted);
+  font-size: 14px;
 }
 
 /* ---------- Цифры ---------- */
@@ -610,6 +727,53 @@ a {
 
 .project:nth-child(even) .project__media {
   order: 2;
+}
+
+/* ---------- Этапы работы ---------- */
+.steps__list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  counter-reset: step;
+}
+
+.step {
+  background: var(--bg);
+  padding: 40px 30px 44px;
+  position: relative;
+  transition: background .3s;
+}
+
+.step:hover {
+  background: var(--bg-2);
+}
+
+.step__num {
+  font-family: var(--font-head);
+  font-size: 14px;
+  color: var(--accent);
+  letter-spacing: .15em;
+  margin-bottom: 22px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+}
+
+.step h3 {
+  font-family: var(--font-head);
+  font-weight: 400;
+  font-size: 17px;
+  margin-bottom: 12px;
+}
+
+.step p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.55;
 }
 
 /* ---------- Услуги ---------- */
@@ -827,12 +991,12 @@ a {
 
 .filter-btn:hover {
   color: var(--text);
-  border-color: rgba(255, 255, 255, .3);
+  border-color: rgba(23, 25, 28, .3);
 }
 
 .filter-btn.is-active {
   background: var(--accent);
-  color: #111;
+  color: #fff;
   border-color: var(--accent);
 }
 
@@ -840,9 +1004,9 @@ a {
   position: absolute;
   right: 18px;
   bottom: 18px;
-  background: rgba(11, 12, 14, .72);
+  background: rgba(255, 255, 255, .85);
   backdrop-filter: blur(8px);
-  border: 1px solid var(--line);
+  border: 1px solid rgba(255, 255, 255, .5);
   border-radius: 100px;
   color: var(--text);
   padding: 10px 20px;
@@ -858,7 +1022,7 @@ a {
 
 .project__gallery-btn:hover {
   background: var(--accent);
-  color: #111;
+  color: #fff;
   border-color: var(--accent);
 }
 
@@ -872,7 +1036,7 @@ a {
   border-radius: 100px;
   padding: 7px 16px;
   font-size: 12px;
-  color: var(--muted);
+  color: rgba(255, 255, 255, .75);
   letter-spacing: .08em;
 }
 
@@ -934,7 +1098,7 @@ a {
 }
 
 .lightbox__caption span {
-  color: var(--muted);
+  color: rgba(255, 255, 255, .6);
   font-size: 13px;
   letter-spacing: .15em;
 }
@@ -943,8 +1107,8 @@ a {
 .lightbox__nav {
   position: absolute;
   background: rgba(255, 255, 255, .06);
-  border: 1px solid var(--line);
-  color: var(--text);
+  border: 1px solid rgba(255, 255, 255, .14);
+  color: #fff;
   border-radius: 50%;
   cursor: pointer;
   transition: all .3s;
@@ -972,7 +1136,7 @@ a {
 .lightbox__close:hover,
 .lightbox__nav:hover {
   background: var(--accent);
-  color: #111;
+  color: #fff;
   border-color: var(--accent);
 }
 
@@ -1039,9 +1203,17 @@ a {
   transition: all .35s;
 }
 
+/* Логотип MAX (картинка вместо SVG) */
+.social-card__brand {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
 .social-card:hover .social-card__icon {
   background: var(--accent);
-  color: #111;
+  color: #fff;
   border-color: var(--accent);
 }
 
@@ -1107,7 +1279,7 @@ a {
   line-height: 1;
   margin: 60px 0;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(255, 255, 255, .12);
+  -webkit-text-stroke: 1px rgba(23, 25, 28, .14);
   user-select: none;
 }
 
@@ -1150,9 +1322,14 @@ a {
     gap: 40px;
   }
 
-  /* Плитки «Цифры» и «Услуги» — строго друг под другом */
+  /* Плитки «Цифры», «Услуги» и «Этапы» — строго друг под другом */
   .numbers__grid,
-  .services__grid {
+  .services__grid,
+  .steps__list {
+    grid-template-columns: 1fr;
+  }
+
+  .promo__grid {
     grid-template-columns: 1fr;
   }
 
@@ -1183,7 +1360,7 @@ a {
   }
 
   .header.scrolled {
-    background: black;
+    background: #fff;
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
     padding: 12px 0;
@@ -1360,7 +1537,8 @@ a {
   }
 
   .numbers__grid,
-  .services__grid {
+  .services__grid,
+  .steps__list {
     grid-template-columns: 1fr;
   }
 
