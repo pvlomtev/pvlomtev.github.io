@@ -1512,7 +1512,7 @@ a {
   }
 
   .hero__title {
-    font-size: clamp(30px, 9.5vw, 40px);
+    font-size: clamp(30px, 8.5vw, 40px);
   }
 
   .hero__actions {
